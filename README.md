@@ -7,7 +7,7 @@ Second, code is always divided into states (similar to a Turing machine). At the
 
 From here, the operators work as follows:
 
-Program start: Initialize list containing one cell set to zero (note that the first state must immediately change this cell to one)
+Program start: Initializes list containing one cell set to zero (note that the first state must immediately change this cell to one)
 
 1: Divides the code into states. Thus, a different state can be found to the right and to the left of each 1 (even if it looks empty). There is also the termination state, which lies after the last state visible in code. 
 
