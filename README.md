@@ -3,7 +3,10 @@ Axios is an extremely minimalistic programming language with two core operations
 
 First, Axios operates on a list of cells that grow over time. Each cell has two possible values, zero or one (not to be confused with the 0 and 1 operators). In this implimentation, cells are stored as bits, but other data types like booleans can also serve this purpose. There is also a pointer located along the list.
 
-Second, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is changed. From here, the operators work as follows:
+Second, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is changed.
+
+
+From here, the operators work as follows:
 
 Program start: Initialize list containing one cell set to zero (note that the first state must immediately change this cell to one)
 
@@ -14,6 +17,7 @@ Program start: Initialize list containing one cell set to zero (note that the fi
 * Decides which state to go to next.
   * If the value at the current cell is set to zero (after moving the pointer, if applicable), continues on to the beginning of the next listed state in the code (the state immediately following the 1). Users should know that, if the current cell is zero for all states, the program must terminate.
   * If the value at the current cell is set to one, each 0 operator performs a "zig-zag" along the code. So the absence of a 0 means going to the next state as usual, one 0 goes back to the beginning of the current state, two 0s goes to the beginning of the state after the next, three 0s goes to the beginning of the state before the current one, etc. Note that this zig-zag pattern can "loop" around the entire code, but keep in mind there is a termination state that is not immediately visible. Going to the state immediately after the last encoded state or immediately before the first will terminate the program.
+
 
 There are also two I/O operators:
 
