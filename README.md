@@ -3,7 +3,7 @@ Axios is an extremely minimalistic programming language with two core operations
 
 First, Axios operates on a list of cells that grow over time. Each cell has two possible values, zero or one (not to be confused with the 0 and 1 operators). In this implimentation, cells are stored as bits, but other data types like booleans can also serve this purpose. There is also a pointer located along the list.
 
-Second, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is changed.
+Second, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is always changed.
 
 The two core operators are 0 and 1, and 2 and 3 are used for output and input respectively. Note that Axios does not require these operators be Western Arabic numerals, as other numeral systems can be used to write programs.
 
