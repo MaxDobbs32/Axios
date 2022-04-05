@@ -5,7 +5,9 @@ First, Axios operates on a list of cells that grow over time. Each cell has two 
 
 Second, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is changed.
 
-From here, the operators work as follows:
+The two core operators are 0 and 1, and 2 and 3 are used for output and input respectively. Note that Axios does not require these operators be Western Arabic numerals, as other numeral systems can be used to write programs.
+
+The operators work as follows:
 
 Program start: Initializes list containing one cell set to zero (note that the first state must immediately change this cell to one)
 
@@ -23,4 +25,4 @@ There are also two I/O operators:
 
 3: Changes cells according to the individual bits contained in UTF-32 characters input by the user, which are stored in a list in little-endian order. The 3 operator only asks for user input when it uses all the bits in the list (21 per UTF-32 character, since the rest must be zeroes). It is also possible to empty the contents of this list by attempting to output 21 ones.
 
-I have good reason to believe Axios is Turing complete, but I am still in the process of forming a proof due to how difficult it is to write programs in this language. I also intend to add more features to my implimentation, including multiple language options and the ability to write code with numerals from a greater variety of numbering systems (currently supports Western Arabic, Eastern Arabic, Devanagari, Bengali, and Fullwidth numerals).
+I have good reason to believe Axios is Turing complete, but I am still in the process of forming a proof due to how difficult it is to write programs in this language. I also intend to add more features to my implimentation, including multiple language options and the ability to write code with numerals from a greater variety of numbering systems (currently supports Western Arabic, Eastern Arabic, Devanagari, Bengali, and fullwidth numerals).
