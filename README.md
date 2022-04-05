@@ -11,7 +11,7 @@ The operators work as follows:
 
 Program start: Initializes list containing one cell set to zero (note that the first state must immediately change this cell to one)
 
-1: Divides the code into states. Thus, a different state can be found to the right and to the left of each 1 (even if it looks empty). There is also the termination state, which lies after the last state visible in code. 
+1: Divides the code into states. Thus, a different state can be found to the right and to the left of each 1 (even if it contains no operators). There is also the termination state, which lies after the last state visible in code. 
 
 0: Performs two functions
 * Each 0 operator changes the decision of whether to move the pointer forward along the list. In other words, an odd number of 0s in a state indicates moving forward, and an even number of 0s does not move the pointer. If the pointer is already located at the end of the list, a new cell initilized to zero is appended to the end of the list, and the pointer returns to the beginning.
