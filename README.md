@@ -23,4 +23,4 @@ There are also two I/O operators:
 
 3: Changes cells according to the individual bits contained in UTF-32 characters input by the user, which are stored in a list in little-endian order. The 3 operator only asks for user input when it uses all the bits in the list. It is also possible to empty the contents of this list by attempting to output 32 ones.
 
-I have good reason to believe Axios is Turing complete, but I am still in the process of forming a proof due to how difficult it is to write programs in this language. I also intend to add more features to my implimentation, including multiple language options and the ability to write code using numerals from a variety of numbering systems.
+I have good reason to believe Axios is Turing complete, but I am still in the process of forming a proof due to how difficult it is to write programs in this language. I also intend to add more features to my implimentation, including multiple language options and the ability to write code using numerals for more numbering systems (currently supports Western Arabic, Devanagari, and Fullwidth numerals).
