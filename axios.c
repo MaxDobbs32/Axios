@@ -313,7 +313,7 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
                         case '\xA9':
                             return '3';
                     }
-                }
+                } break;
 
                 // Bengali numerals
                 case '\xA7': {
@@ -327,9 +327,9 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
                         case '\xA9':
                             return '3';
                     }
-                }
+                } break;
             }
-        }
+        } break;
 
         // Fullwidth numerals
         case '\xEF': {
@@ -345,11 +345,10 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
                         return '3';
                 }
             }
-        }
-
-        default:
-            return 'N';
+        } break;
     }
+
+    return 'N';
 }
 
 // Deterimines the operator associated with a two-byte character
