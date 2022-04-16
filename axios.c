@@ -304,48 +304,88 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
                 // Devanagari numerals
                 case '\xA5': {
                     switch (string[index+2]) {
-                        case '\xA6':
-                            return '0';
-                        case '\xA7':
-                            return '1';
-                        case '\xA8':
-                            return '2';
-                        case '\xA9':
-                            return '3';
-                    }
-                } break;
+                        case '\xA6': return '0';
+                        case '\xA7': return '1';
+                        case '\xA8': return '2';
+                        case '\xA9': return '3';
+                }} break;
 
                 // Bengali numerals
                 case '\xA7': {
                     switch(string[index+2]) {
-                        case '\xA6':
-                            return '0';
-                        case '\xA7':
-                            return '1';
-                        case '\xA8':
-                            return '2';
-                        case '\xA9':
-                            return '3';
-                    }
-                } break;
-            }
-        } break;
+                        case '\xA6': return '0';
+                        case '\xA7': return '1';
+                        case '\xA8': return '2';
+                        case '\xA9': return '3';
+                }} break;
+
+                // Tamil numerals
+                case '\xAF': {
+                    switch(string[index+2]) {
+                        case '\xA6': return '0';
+                        case '\xA7': return '1';
+                        case '\xA8': return '2';
+                        case '\xA9': return '3';
+                }} break;
+
+                //Thai numerals
+                case '\xB9': {
+                    switch(string[index+2]) {
+                        case '\x90': return '0';
+                        case '\x91': return '1';
+                        case '\x92': return '2';
+                        case '\x93': return '3';
+                }} break;
+
+                //Lao numerals
+                case '\xBB': {
+                    switch(string[index+2]) {
+                        case '\x90': return '0';
+                        case '\x91': return '1';
+                        case '\x92': return '2';
+                        case '\x93': return '3';
+                }} break;
+
+                // Tibetan numerals
+                case '\xBC': {
+                    switch(string[index+2]) {
+                        case '\xA0': return '0';
+                        case '\xA1': return '1';
+                        case '\xA2': return '2';
+                        case '\xA3': return '3';
+                }} break;
+        }} break;
+
+        case '\xE1': {
+            switch (string[index+1]) {
+                //Burmese numerals
+                case '\x81': {
+                    switch (string[index+2]) {
+                        case '\x80': return '0';
+                        case '\x81': return '1';
+                        case '\x82': return '2';
+                        case '\x83': return '3';
+                }} break;
+
+                //Khmer numerals
+                case '\x9F': {
+                    switch (string[index+2]) {
+                        case '\xA0': return '0';
+                        case '\xA1': return '1';
+                        case '\xA2': return '2';
+                        case '\xA3': return '3';
+                }} break;
+        }} break;
 
         // Fullwidth numerals
         case '\xEF': {
             if (string[index+1] == '\xBC') {
                 switch (string[index+2]) {
-                    case '\x90':
-                        return '0';
-                    case '\x91':
-                        return '1';
-                    case '\x92':
-                        return '2';
-                    case '\x93':
-                        return '3';
-                }
-            }
-        } break;
+                    case '\x90': return '0';
+                    case '\x91': return '1';
+                    case '\x92': return '2';
+                    case '\x93': return '3';
+        }}} break;
     }
 
     return 'N';
@@ -356,14 +396,10 @@ unsigned char identify_two_byte_operator(char string[], size_t index) {
     // Eastern Arabic numerals
     if (string[index] == '\xD9') {
         switch (string[index+1]) {
-            case '\xA0':
-                return '0';
-            case '\xA1':
-                return '1';
-            case '\xA2':
-                return '2';
-            case '\xA3':
-                return '3';
+            case '\xA0': return '0';
+            case '\xA1': return '1';
+            case '\xA2': return '2';
+            case '\xA3': return '3';
         }
     }
 
