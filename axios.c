@@ -328,7 +328,7 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
                         case '\xA9': return '3';
                 }} break;
 
-                //Thai numerals
+                // Thai numerals
                 case '\xB9': {
                     switch(string[index+2]) {
                         case '\x90': return '0';
@@ -337,7 +337,7 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
                         case '\x93': return '3';
                 }} break;
 
-                //Lao numerals
+                // Lao numerals
                 case '\xBB': {
                     switch(string[index+2]) {
                         case '\x90': return '0';
@@ -358,7 +358,7 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
 
         case '\xE1': {
             switch (string[index+1]) {
-                //Burmese numerals
+                // Burmese numerals
                 case '\x81': {
                     switch (string[index+2]) {
                         case '\x80': return '0';
@@ -367,7 +367,7 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
                         case '\x83': return '3';
                 }} break;
 
-                //Khmer numerals
+                // Khmer numerals
                 case '\x9F': {
                     switch (string[index+2]) {
                         case '\xA0': return '0';
