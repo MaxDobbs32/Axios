@@ -183,7 +183,6 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
     // Initializes variables used for output
     unsigned long output_utf_32 = 0;
     unsigned long toggle_output = 0x00000001;
-    char is_current_bit_one;
     char will_not_print_extra_line = 255;
 
     // Loops through all states until the termination state is reached
@@ -222,13 +221,10 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
             }
         }
 
-        // Records the current bit
-        is_current_bit_one = (cells[current_bit/8] >> current_bit%8) & 1;
-
         // Outputs characters based on the number of 2 operators in the current state
         if (outputs[state] != 0) {
             for (unsigned char i = outputs[state]; i > 0; i--) {
-                if (is_current_bit_one)
+                if ((cells[current_bit/8] >> current_bit%8) & 1)
                     output_utf_32 ^= toggle_output;
                 if (toggle_output != 0x00100000)
                     toggle_output *= 2;
@@ -247,8 +243,9 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
             }
         }
 
-        // Moves the pointer if the current state requires it
+        // If the current state has no 0 operators, shift the pointer forward
         // If the last bit is reached, add a new bit and return to the beginning
+        // When this process is completed, go to the next state written in code
         if (will_move_pointer[state]) {
             if (current_bit != last_bit) {
                 current_bit++;
@@ -275,14 +272,23 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
                         cells[i] = 0;
                 }
             }
+            state++;
         }
-
-        // If the current bit is zero, go to the state marked by next_states
-        // Otherwise, go to the next state
-        if (is_current_bit_one)
+        // If there are 0 operators and the current bit is one, go to the state marked by next_states
+        else if ((cells[current_bit/8] >> current_bit%8) & 1)
             state = next_states[state];
+        // If there are 0 operators and the current bit is zero, go to the next state written in code
         else
             state++;
+
+        for (int i = 0; i <= last_bit; i++) {
+            if (i == current_bit)
+                printf("[");
+            printf("%hhu", (cells[i/8] >> i%8) & 1);
+            if (i == current_bit)
+                printf("]");
+            printf(" ");
+        } printf("\n");
     }
 
     clear_queue();
@@ -472,14 +478,13 @@ void read_program(char code[]) {
             } break;
 
             case '1': {
-                if (number_of_zeroes % 2 == 0) {
+                if (number_of_zeroes > 0) {
                     will_move_pointer[state_index] = 0;
-                    next_states[state_index] = (state_index + 1 + (number_of_zeroes) / 2) % (number_of_states + 1);
-                } else {
+                    next_states[state_index] = state_index - number_of_zeroes + 1;
+                    while (next_states[state_index] < 0)
+                        next_states[state_index] += number_of_states;
+                } else
                     will_move_pointer[state_index] = 255;
-                    unsigned long remainder_division_aid = (1 + (number_of_zeroes + 1) / (2 * (number_of_states + 1))) * (number_of_states + 1);
-                    next_states[state_index] = (remainder_division_aid + state_index + 1 - (number_of_zeroes + 1) / 2) % (number_of_states + 1);
-                }
                 number_of_zeroes = 0;
                 state_index++;
                 outputs[state_index] = 0;
@@ -504,14 +509,13 @@ void read_program(char code[]) {
     }
 
     // Repetition of code from case '1', which is needed for every state
-    if (number_of_zeroes % 2 == 0) {
+    if (number_of_zeroes > 0) {
         will_move_pointer[state_index] = 0;
-        next_states[state_index] = (state_index + 1 + (number_of_zeroes) / 2) % (number_of_states + 1);
-    } else {
+        next_states[state_index] = state_index - number_of_zeroes + 1;
+        while (next_states[state_index] < 0)
+            next_states[state_index] += number_of_states;
+    } else
         will_move_pointer[state_index] = 255;
-        unsigned long remainder_division_aid = (1 + (number_of_zeroes + 1) / (2 * (number_of_states + 1))) * (number_of_states + 1);
-        next_states[state_index] = (remainder_division_aid + state_index + 1 - (number_of_zeroes + 1) / 2) % (number_of_states + 1);
-    }
 
     run_program(next_states, will_move_pointer, outputs, inputs, number_of_states);
 }
