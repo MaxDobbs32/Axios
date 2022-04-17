@@ -14,10 +14,8 @@ Program start: Initializes list containing one cell set to zero (note that the f
 1: Divides the code into states. Thus, a different state can be found to the right and to the left of each 1 (even if it contains no operators). There is also the termination state, which lies after the last state visible in code. 
 
 0: Performs two functions
-* Each 0 operator changes the decision of whether to move the pointer forward along the list. In other words, an odd number of 0s in a state indicates moving forward, and an even number of 0s does not move the pointer. If the pointer is already located at the end of the list, a new cell initilized to zero is appended to the end of the list, and the pointer returns to the beginning.
-* Decides which state to go to next based on the value of the current cell:
-  * If the value at the current cell is set to zero (after changing the cell and before choosing to move the pointer), continues on to the beginning of the next listed state in the code (the state immediately following the 1). Users should know that, if the current cell is zero for all states, the program must terminate.
-  * If the value at the current cell is set to one, each 0 operator performs a "zig-zag" along the code. So the absence of a 0 means continuing to the next state as usual, one 0 returns to the beginning of the current state, two 0s goes to the beginning of the state after the next, three 0s goes to the beginning of the state before the current one, etc. Note that this zig-zag pattern can "loop" around the entire code, but keep in mind there is a termination state that is not visible in the code. Going to the state immediately after the last encoded state or immediately before the first will terminate the program.
+* The absence of a 0 operator indicates the pointer moves forward. Any 0 operators indicates the pointer remains where it is.
+* The number of 0 operators indicates the next state. By default (i.e. no 0 operators), the next state is the next one in code. Any additional 0 operator indicates the state moves back one IF the current bit is set (after changing the bit), and continues as normal if the current bit is not set.
 
 There are also two I/O operators:
 
