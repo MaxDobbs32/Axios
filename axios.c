@@ -280,15 +280,6 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
         // If there are 0 operators and the current bit is zero, go to the next state written in code
         else
             state++;
-
-        for (int i = 0; i <= last_bit; i++) {
-            if (i == current_bit)
-                printf("[");
-            printf("%hhu", (cells[i/8] >> i%8) & 1);
-            if (i == current_bit)
-                printf("]");
-            printf(" ");
-        } printf("\n");
     }
 
     clear_queue();
