@@ -21,7 +21,7 @@ Program start: Initializes list containing one cell set to zero (note that the f
 
 There are also two I/O operators:
 
-2: Outputs the value of the current cell as a bit (before moving the pointer and before changing states, if applicable). Each time 21 bits are output, the program displays a character if the output forms a valid UTF-32 encoding (in little-endian order). Attempting to output 21 ones also resets the list used for the 3 operator. (There is no valid character that can be output by 21 ones.)
+2: Outputs the value of the current cell as a bit (after changing the value of the cell, before moving the pointer, and before changing states, if applicable). Each time 21 bits are output, the program displays a character if the output forms a valid UTF-32 encoding (in little-endian order). Attempting to output 21 ones also resets the list used for the 3 operator. (There is no valid character that can be output by 21 ones.)
 
 3: Changes cells according to the individual bits contained in UTF-32 characters input by the user, which are stored in a list in little-endian order. The 3 operator only asks for user input when it uses all the bits in the list (21 bits per UTF-32 character; other bits stored in UTF-32 characters must always be zeroes and are therefore ignored). It is also possible to empty the contents of this list by attempting to output 21 ones. This operation occurs at the beginning of a state, and its presence within a state means the current cell will not be changed except according to user input.
 
