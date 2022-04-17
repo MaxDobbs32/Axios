@@ -13,7 +13,6 @@ Program start: Initializes list containing one cell set to zero (note that the f
 
 1: Divides the code into states. Thus, a different state can be found to the right and to the left of each 1 (even if it contains no operators). There is also the termination state, which lies after the last state visible in code. 
 
-
 0: Performs two functions
 * The absence of a 0 operator indicates the pointer moves forward. Any 0 operators indicates the pointer remains where it is.
 * The number of 0 operators indicates the next state. By default (i.e. no 0 operators), the next state is the next one in code. Any additional 0 operator indicates the state moves back one IF the current bit is set (after changing the bit), and continues as normal if the current bit is not set.
