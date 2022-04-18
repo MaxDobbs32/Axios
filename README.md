@@ -5,7 +5,7 @@ First, Axios operates on a list of cells that grow over time. Each cell has two 
 
 Second, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is always changed.
 
-The two core operators are 0 and 1, and 2 and 3 are used for output and input respectively. Note that Axios does not require these operators be Western Arabic numerals, as other numeral systems can be used to write programs. In my view, for a language with as few operations as Axios, there are no advantages to relying solely on one writing system. It is more important that as many people as possible can type valid code.
+The two core operators are 0 and 1, and 2 and 3 are used for output and input respectively. Note that Axios does not require these operators be Western Arabic numerals, as other numeral systems can be used to write programs. In my view, for a programming language with as few operations as Axios, there are no advantages to relying solely on one writing system. It is more important that as many people as possible can type valid code.
 
 The operators work as follows:
 
