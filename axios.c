@@ -390,14 +390,26 @@ unsigned char identify_three_byte_operator(char string[], size_t index) {
 
 // Deterimines the operator associated with a two-byte character
 unsigned char identify_two_byte_operator(char string[], size_t index) {
-    // Eastern Arabic numerals
-    if (string[index] == '\xD9') {
-        switch (string[index+1]) {
-            case '\xA0': return '0';
-            case '\xA1': return '1';
-            case '\xA2': return '2';
-            case '\xA3': return '3';
-        }
+    switch (string[index]) {
+        // Eastern Arabic numerals
+        case '\xD9': {
+            switch (string[index+1]) {
+                case '\xA0': return '0';
+                case '\xA1': return '1';
+                case '\xA2': return '2';
+                case '\xA3': return '3';
+            }
+        } break;
+
+        // Persian numerals
+        case '\xDB': {
+            switch (string[index+1]) {
+                case '\xB0': return '0';
+                case '\xB1': return '1';
+                case '\xB2': return '2';
+                case '\xB3': return '3';
+            }
+        } break;
     }
 
     return 'N';
@@ -600,6 +612,8 @@ int main() {
 
             case '2': {
                 printf("\nMIT License  Copyright (c) 2022  Maxine Dobbs\n");
+                printf("For more information, check out this link: https://github.com/MaxDobbs32/Axios\n");
+                printf("The full license text can be found at this link: https://github.com/MaxDobbs32/Axios/blob/main/LICENSE.md\n");
             } break;
         }
         selection[1] = 0; selection[2] = 0; selection[3] = 0;
