@@ -484,8 +484,8 @@ void read_program(char code[]) {
                 if (number_of_zeroes > 0) {
                     will_move_pointer[state_index] = 0;
                     next_states[state_index] = state_index - number_of_zeroes + 1;
-                    while (next_states[state_index] < 0)
-                        next_states[state_index] += number_of_states;
+                    while (next_states[state_index] > 524288)
+                        next_states[state_index] += number_of_states + 1;
                 } else
                     will_move_pointer[state_index] = 255;
                 number_of_zeroes = 0;
@@ -515,8 +515,8 @@ void read_program(char code[]) {
     if (number_of_zeroes > 0) {
         will_move_pointer[state_index] = 0;
         next_states[state_index] = state_index - number_of_zeroes + 1;
-        while (next_states[state_index] < 0)
-            next_states[state_index] += number_of_states;
+        while (next_states[state_index] > 524288)
+            next_states[state_index] += number_of_states + 1;
     } else
         will_move_pointer[state_index] = 255;
 
