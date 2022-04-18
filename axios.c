@@ -529,7 +529,7 @@ void read_program(char code[]) {
 
 // Opens file, records the code contained inside, and calls read_program()
 void run_code_from_file() {
-    printf("\nType the name your file: ");
+    printf("\nType the name of your file: ");
     char file_name[256] = {0};
     gets(file_name); // Buffer function needed, or no user input will be read
     gets(file_name);
@@ -537,7 +537,7 @@ void run_code_from_file() {
     FILE *file;
     file = fopen(file_name, "r");
     if (file == NULL) {
-        fprintf(stderr, "Invalid path entered\n");
+        fprintf(stderr, "File not found\n");
         return;
     }
 
