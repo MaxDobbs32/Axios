@@ -198,7 +198,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
             // Asks for user input when there are not enough UTF-32 encodings stored
             for (unsigned char i = inputs[state]; i > 0; i--) {
                 while (input_queue_size * 21 < i) {
-                    unsigned char input_string[1024] = {0};
+                    unsigned char input_string[1024];
                     fgets(input_string, 1024, stdin);
                     input_queue_size = add_inputs(input_string, input_queue_size);
                     if (input_queue_size == 0xFFFFFFFF) {
