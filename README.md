@@ -1,5 +1,12 @@
 # Axios
-Axios is an extremely minimalistic programming language with two core operations. Its name comes from the Greek origin of the word "axiom", and this language is my attempt to explore the fundamental building blocks that can form any theoretical concept. A nice feature of Axios is it is impossible to write invalid code that could throw an error (unless too much storage space is used). To understand how all this works, it is important to know several fundamental features.
+Axios is an extremely minimalistic programming language with two core operations. Its name comes from the Greek origin of the word "axiom", and this language is my attempt to explore the fundamental building blocks that can form any theoretical concept.
+
+Axios was created with these goals in mind:
+ * To have as few core operations as possible (two, excluding the I/O operations), such that
+   * Each operation is simple to explain
+   * Each operation performs the same function(s) in all circumstances
+ * To be Turing complete
+ * To be impossible to write invalid code or code that will result in run-time errors (excluding those relating to overuse of memory)
 
 First, Axios operates on a list of cells that grow over time. Each cell has two possible values, zero or one (not to be confused with the 0 and 1 operators). In this implimentation, cells are stored as bits, but other data types like booleans can also serve this purpose. There is also a pointer located along the list.
 
