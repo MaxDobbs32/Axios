@@ -2,15 +2,15 @@
 Axios is an extremely minimalistic programming language with two core operations. Its name comes from the Greek origin of the word "axiom", and this language is my attempt to explore the fundamental building blocks that can form any theoretical concept.
 
 Axios was created with these goals in mind:
- * To have as few core operations as possible (two, excluding the I/O operations), such that
+ * To have as few core operations as possible (two, excluding the I/O operations), such that...
    * Each operation is simple to explain
    * Each operation performs the same function(s) in all circumstances
  * To be Turing complete
- * To be impossible to write invalid code or code that will result in run-time errors (excluding those relating to overuse of memory)
+ * To make writing invalid code impossible; all sequences of characters are valid in Axios and cannot yield a syntax or runtime error (except in instances of excessive memory use)
 
-First, Axios operates on a list of cells that grow over time. Each cell has two possible values, zero or one (not to be confused with the 0 and 1 operators). In this implimentation, cells are stored as bits, but other data types like booleans can also serve this purpose. There is also a pointer located along the list.
+Axios operates on a list of cells that grow over time. Each cell has two possible values, zero or one (not to be confused with the 0 and 1 operators). In this implimentation, cells are stored as bits, but other data types like booleans can also serve this purpose. There is also a pointer located along the list.
 
-Second, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is always changed.
+In addition, code is always divided into states (similar to a Turing machine). At the beginning of each state, the cell at which the pointer is located is always changed.
 
 The two core operators are 0 and 1, and 2 and 3 are used for output and input respectively. Note that Axios does not require these operators be Western Arabic numerals, as other numeral systems can be used to write programs. In my view, for a programming language with as few operations as Axios, there are no advantages to relying solely on one writing system. It is more important that as many people as possible can type valid code.
 
