@@ -8,7 +8,7 @@ Axios was created with these goals in mind:
  * To be Turing complete
  * To make writing invalid code impossible; all sequences of characters are valid in Axios and cannot yield a syntax or runtime error (except in instances of excessive memory use)
 
-The language is explained in much greater detail in the documentation. Below is a fairly brief summary of how Axios works.
+The language is explained in much greater detail in the guide. Below is a fairly brief summary of how Axios works.
 
 Axios operates on a list of cells that grow over time. Each cell has two possible values, zero or one (not to be confused with the 0 and 1 operators). In this implimentation, cells are stored as bits, but other data types like booleans can also serve this purpose. There is also a pointer located along the list.
 
