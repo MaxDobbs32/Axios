@@ -119,9 +119,11 @@ unsigned long add_inputs(unsigned char *ptr, unsigned long input_queue_size) {
             return 0xFFFFFFFF;
         }
     }
-
+    rear->input_utf_32 = '\n';
+    rear->next = (struct node*) malloc(sizeof(struct node));
+    rear = rear->next;
     rear->input_utf_32 = 0xFFFFFFFF;
-    return input_queue_size;
+    return input_queue_size + 1;
 }
 
 
