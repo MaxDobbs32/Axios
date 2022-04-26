@@ -1,18 +1,14 @@
 /*
 MIT License
-
 Copyright (c) 2022 Maxine Dobbs
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,26 +23,20 @@ SOFTWARE.
 
 /*
 Contents:
-
 Input Queue
   *  struct node
   *  remove_front()
   *  clear_queue()
   *  add_inputs(): adds elements to the queue from user input
-
 display_output()
-
 run_program()
-
 Parse Code
   *  identify_three_byte_operator()
   *  identify_two_byte_operator()
   *  read_program()
-
 Input Code
   *  run_code_from_file()
   *  run_shell()
-
 main(): runs menu
 */
 
@@ -185,7 +175,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
     // Initializes variables used for output
     unsigned long output_utf_32 = 0;
     unsigned long toggle_output = 0x00000001;
-    char will_not_print_extra_line = 255;
+    unsigned char will_not_print_extra_line = 255;
 
     // Loops through all states until the termination state is reached
     while (state < number_of_states) {
@@ -199,7 +189,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
             for (unsigned char i = inputs[state]; i > 0; i--) {
                 while (input_queue_size * 21 < i) {
                     unsigned char input_string[1024];
-                    fgets(input_string, 1024, stdin);
+                    fgets((char *) input_string, 1024, stdin);
                     input_queue_size = add_inputs(input_string, input_queue_size);
                     if (input_queue_size == 0xFFFFFFFF) {
                         clear_queue();
@@ -532,9 +522,17 @@ void read_program(char code[]) {
 // Opens file, records the code contained inside, and calls read_program()
 void run_code_from_file() {
     printf("\nType the name of your file: ");
-    char file_name[256] = {0};
-    gets(file_name); // Buffer function needed, or no user input will be read
-    gets(file_name);
+    char file_name[256];
+    fgets(file_name, 2, stdin); // Buffer function needed, or no user input will be read
+    fgets(file_name, 256, stdin);
+
+    // Replaces the newline character at the end of file_name with the null character, to be correctly read for fopen()
+    for (int i = 0; i < 256; i++) {
+        if (file_name[i] == '\n') {
+            file_name[i] = '\0';
+            break;
+        }
+    }
 
     FILE *file;
     file = fopen(file_name, "r");
@@ -595,7 +593,7 @@ int main() {
         printf("[3] Quit\n");
         printf("Enter your choice: ");
 
-        scanf("%4s", &selection);
+        scanf("%4s", selection);
         numeral = selection[0];
 
         if (numeral > 0xDF && numeral < 0xF0)
