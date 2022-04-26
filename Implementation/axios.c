@@ -543,6 +543,7 @@ void run_code_from_file() {
             break;
         }
     }
+    file_name[255] = '\0'; // Ensures the last character is the null character in case file_name was too long
 
     FILE *file;
     file = fopen(file_name, "r");
