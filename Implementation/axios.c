@@ -1,14 +1,18 @@
 /*
 MIT License
+
 Copyright (c) 2022 Maxine Dobbs
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
+
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,20 +27,26 @@ SOFTWARE.
 
 /*
 Contents:
+
 Input Queue
   *  struct node
   *  remove_front()
   *  clear_queue()
   *  add_inputs(): adds elements to the queue from user input
+
 display_output()
+
 run_program()
+
 Parse Code
   *  identify_three_byte_operator()
   *  identify_two_byte_operator()
   *  read_program()
+
 Input Code
   *  run_code_from_file()
   *  run_shell()
+
 main(): runs menu
 */
 
@@ -253,7 +263,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
                 // Reallocates cells array if it requires more elements beyond its current capacity
                 if (last_bit == capacity) {
                     capacity *= 2;
-                    cells = (char*)realloc(cells, capacity / 8);
+                    cells = (char*) realloc(cells, capacity / 8);
                     if (cells == NULL) {
                         fprintf(stderr, "Failed to allocate memory\n");
                         clear_queue();
@@ -522,11 +532,11 @@ void read_program(char code[]) {
 // Opens file, records the code contained inside, and calls read_program()
 void run_code_from_file() {
     printf("\nType the name of your file: ");
-    char file_name[256];
+    char file_name[256] = {0};
     fgets(file_name, 2, stdin); // Buffer function needed, or no user input will be read
     fgets(file_name, 256, stdin);
 
-    // Replaces the newline character at the end of file_name with the null character, to be correctly read for fopen()
+    // Replaces the newline character at the end of file_name with the null character, so the correct file name will be passed to fopen()
     for (int i = 0; i < 256; i++) {
         if (file_name[i] == '\n') {
             file_name[i] = '\0';
@@ -593,7 +603,7 @@ int main() {
         printf("[3] Quit\n");
         printf("Enter your choice: ");
 
-        scanf("%4s", selection);
+        scanf("%4s", &selection);
         numeral = selection[0];
 
         if (numeral > 0xDF && numeral < 0xF0)
