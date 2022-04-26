@@ -532,7 +532,7 @@ void read_program(char code[]) {
 // Opens file, records the code contained inside, and calls read_program()
 void run_code_from_file() {
     printf("\nType the name of your file: ");
-    char file_name[256] = {0};
+    char file_name[256];
     fgets(file_name, 2, stdin); // Buffer function needed, or no user input will be read
     fgets(file_name, 256, stdin);
 
@@ -603,7 +603,7 @@ int main() {
         printf("[3] Quit\n");
         printf("Enter your choice: ");
 
-        scanf("%4s", &selection);
+        scanf("%4s", selection);
         numeral = selection[0];
 
         if (numeral > 0xDF && numeral < 0xF0)
