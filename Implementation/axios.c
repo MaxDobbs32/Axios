@@ -213,7 +213,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
                     input_queue_size--;
                 }
                 if ((front->input_utf_32 >> current_input_bit) & 1) {
-                    if ((cells[current_bit/8] >> current_bit%8) & 0)
+                    if (!((cells[current_bit/8] >> current_bit%8) & 1))
                         cells[current_bit/8] ^= toggle_bit;
                 } else {
                     if ((cells[current_bit/8] >> current_bit%8) & 1)
