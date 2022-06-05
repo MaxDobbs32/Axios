@@ -238,8 +238,11 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
                             will_not_print_extra_line = 0;
                         }
                         display_output(output_utf_32);
-                    } else
+                    } else {
                         clear_queue();
+                        current_input_bit = 0;
+                        input_queue_size = 0;
+                    }
                     output_utf_32 = 0;
                 }
             }
