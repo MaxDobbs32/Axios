@@ -208,8 +208,8 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
                     }
                 }
                 if (current_input_bit == 21) {
-                    current_input_bit = 0;
                     remove_front();
+                    current_input_bit = 0;
                     input_queue_size--;
                 }
                 if ((front->input_utf_32 >> current_input_bit) & 1) {
