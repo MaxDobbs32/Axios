@@ -196,6 +196,10 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
         else {
             // Operates input queue, changing the current bit according to user input
             // Asks for user input when there are not enough UTF-32 encodings stored
+            if (will_not_print_extra_line) {
+                printf("\n");
+                will_not_print_extra_line = 0;
+            }
             for (unsigned char i = inputs[state]; i > 0; i--) {
                 while (input_queue_size * 21 < i) {
                     unsigned char input_string[1024];
