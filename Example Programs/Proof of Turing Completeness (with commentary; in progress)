@@ -17,7 +17,7 @@ First, I should clarify a few things before moving forward with the program:
      Section I appears at the top, Section II at the bottom, and Section III in the center. This organizational style serves to reduce the number of operations.
      
   *  This program contains four hundred twenty-four states (in addition to the termination state). Particularly important states receive letter names, which will appear
-     immediately before the first zero, two, or three operator of the state (if applicable). One operators divide states, and themselves belong to no particular state.
+     immediately before the first zero, two, or three operator of the state (if applicable). One operators divide states, and each belongs to no particular state.
 
   *  Anything that does not contain numerals is a comment. This may lead to spelling out numbers awkwardly (namely, spelling out Rule One Hundred Ten), but this is
      necessary to ensure the interpreter does not read comments as code.
