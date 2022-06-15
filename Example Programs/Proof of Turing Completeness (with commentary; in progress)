@@ -3,8 +3,8 @@ Ten (also known as Rule One Hundred Twenty-Four).
 
 To run this program:
   *  Download the appropriate Axios implementation.
-  *  Download this file (or copy paste its contents into a file on your computer)
-  *  Run the Axios interpreter via a command-line application (such as Command Prompt for Windows or Terminal for Mac)
+  *  Download this file, or copy and paste its contents into a file on your computer.
+  *  Run the Axios interpreter via a command-line application. (eg. Command Prompt for Windows or Terminal for Mac)
   *  Type zero and press enter.
   *  Type the file's name and press enter.
   *  Type the first line of the Rule One Hundred Ten sequence and press enter, with ones representing full cells and zeroes representing empty cells. Typing nothing and
@@ -23,7 +23,7 @@ First, I should clarify a few things before moving forward with the program:
      necessary to ensure the interpreter does not read comments as code.
 
   *  Rule One Hundred Ten and Axios both have cells as the fundamental unit. To avoid confusion, this program refers to Rule One Hundred Ten Cells simply as "cells", and
-     Axios cells as "bits". (Technically, an implementation does not have to store Axios cells as bits, but the implementation displayed in this GitHub project does.)
+     Axios cells as "bits". (Technically, an implementation does not have to store Axios cells as bits, but the implementation displayed in this repository does.)
 
   *  In Axios's list of bits, every four bits will represent one cell.
      *  The first bit being one indicates there is a valid cell. If the first bit is zero, no valid cell follows, and all following bits must also be zero.
