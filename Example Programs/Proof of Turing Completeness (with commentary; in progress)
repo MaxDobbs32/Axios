@@ -1,4 +1,44 @@
+This Axios program serves to proof Axios's Turing completeness by recreating a Turing Complete cellular automaton, namely, a left-to-right variation of Rule One Hundred
+Ten (also known as Rule One Hundred Twenty-Four).
+
+To run this program:
+  *  Download the appropriate Axios implementation.
+  *  Download this file (or copy paste its contents into a file on your computer)
+  *  Run the Axios interpreter via a command-line application (such as Command Prompt for Windows or Terminal for Mac)
+  *  Type zero and press enter.
+  *  Type the file's name and press enter.
+  *  Type the first line of the Rule One Hundred Ten sequence and press enter, with ones representing full cells and zeroes representing empty cells. Typing nothing and
+     pressing enter will initialize Rule One Hundred Ten with only one full cell.
+
+
+First, I should clarify a few things before moving forward with the program:
+
+  *  The program itself is split into three sections, labeled for the order in which they occur in the program. Due to how states reference other states in Axios,
+     Section I appears at the top, Section II at the bottom, and Section III in the center. This organizational style serves to reduce the number of operations.
+
+  *  Anything that does not contain numerals is a comment. This may lead to spelling out numbers awkwardly (namely, spelling out Rule One Hundred Ten), but this is
+     necessary to ensure the interpreter does not read comments as code.
+
+  *  Rule One Hundred Ten and Axios both have cells as the fundamental unit. To avoid confusion, this program refers to Rule One Hundred Ten Cells simply as "cells", and
+     Axios cells as "bits". (Technically, an implementation does not have to store Axios cells as bits, but the implementation displayed in this GitHub project does.)
+
+  *  In Axios's list of bits, every four bits will represent one cell.
+     *  The first bit being one indicates there is a valid cell. If the first bit is zero, no valid cell follows, and all following bits must also be zero.
+     *  The second bit marks a cell as being the current focus of the program.
+     *  The third bit displays the cell's current value.
+     *  The fourth bit displays the cell's previous value.
+     *  Here's an example of four cells as represented in Axios:
+        *  Cell values: one zero one one
+        *  Bit values: (one one one one) (one zero zero zero) (one zero one one) (one zero one one) zero zero zero...
+
+
+
 Section I:
+
+This section is the simplest. It moves the pointer thirty three times to create the first eight bits, which will soon become the sequence:
+(one one one one) (one zero zero zero)...
+
+The last state has forty zeroes, which indicates a shift to State A near the end of this program.
 
 111111111111111111111111111111011101100000000000000000000000000000000000000001
 
@@ -38,6 +78,9 @@ Section II:
 3000100001
 3000100001
 
-30001000013000100001300000000013000000000000130000000000000001300000000000000000013000000000000000000000130000000000000000000000001300000000000000000000000000013000000000000000000000000000000130000000000000000000000000000000001300000000000000000000000000000000000013000000000000000000000000000000000000000130000000000000000000000000000000000000000001300000000000000000000000000000000000000000000013000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000000000000013000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001300000000000000000000000130000000000000000000010000000000000000000000000001130000000000000000000000000000000000000000000000000000000000000000000000000000000130000001000000000000000000000000000101100000001
+30001000013000100001300000000013000000000000130000000000000001300000000000000000013000000000000000000000130000000000000000000000001300000000000000000000000000013000000000000000000000000000000130000000000000000000000000000000001300000000000000000000000000000000000013000000000000000000000000000000000000000130000000000000000000000000000000000000000001300000000000000000000000000000000000000000000013000000000000000000000000000000000000000000000000130000000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000000000000013000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
+State C: 300000000000000000000000130000000000000000000010000000000000000000000000001
+State B: 130000000000000000000000000000000000000000000000000000000000000000000000000000000130000001000000000000000000000000000101100000001
 
+State A: moves the pointer again. The state following moves the pointer a third time, and the state after that indicates a shift to State B.
 110000000000
