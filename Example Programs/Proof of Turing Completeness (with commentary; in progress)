@@ -1,4 +1,4 @@
-This Axios program serves to proof Axios's Turing completeness by recreating a Turing Complete cellular automaton, namely, a left-to-right variation of Rule One Hundred
+This Axios program serves to prove Axios's Turing completeness by recreating a Turing complete cellular automaton, namely, a left-to-right variation of Rule One Hundred
 Ten (also known as Rule One Hundred Twenty-Four).
 
 To run this program:
@@ -11,8 +11,8 @@ To run this program:
      pressing enter will initialize Rule One Hundred Ten with only one full cell.
 
 
-Reading the "Guide to Axios" pdf is essential to understanding this proof, so check it out if you have not already. In addition, I should clarify a few things before
-moving forward with the program:
+The information in the "Guide to Axios" pdf file is essential to understanding this proof, so check it out if you are interested. In addition, I should clarify a few
+things before explaining the program:
 
   *  The program itself is split into three sections, labeled for the order in which they occur in the program. Due to how states reference other states in Axios,
      Section I appears at the top, Section II at the bottom, and Section III in the center. This organizational style serves to reduce the number of operations.
