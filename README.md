@@ -38,4 +38,4 @@ There are also two I/O operators:
 
 Numeral systems supported by this Axios implementation currently include Western Arabic, Eastern Arabic, Devanagari, Persian, Bengali, Tamil, Thai, Lao, Tibetan, Burmese, Khmer, and fullwidth numerals.
 
-For a proof of Turing completeness, check out the Example Programs section. The file available is not readable, but I intend to upload a second one soon that will be much easier to interpret. If you run the program, it will implement Rule 110, a Turing complete cellular automaton.
+For a proof that Axios is Turing complete, check out "Turing Completeness Proof" in the Example Programs section. If you run the program, it will implement Rule 110, a Turing complete cellular automaton. Note that the commentary on this file is not yet complete.
