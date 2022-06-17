@@ -241,7 +241,7 @@ The categories are:
   *  Character whose first encoded bit is zero (little-endian order), but is NOT the newline character
      *  Redirects to the one of the C states, depending on how long it takes for the program to determine it is not the
         newline character
-     *  (It is theoretically possible for a character with a particular unicode encoding to redirect to State D, but no such
+     *  (It is theoretically possible for a character with a particular Unicode encoding to redirect to State D, but no such
         character exists at the time I am writing this.)
   *  If the user presses enter (submitting a newline character) without first typing any other characters, the first cell will
      be full and the rest will be empty.
@@ -264,4 +264,7 @@ State BC >> 3000000000000000000000001 ~> State CB    3000000000000000000001 ~> S
 State BA >> 1    State BB >> 300000000000000000000000000000000000000000000000000000000000000000000000000000001 ~> State E
 30000001 ~> State BC 0000000000000000000000000001 -> State CA
 
+The line of code below, along with State BA, is only called once. This line moves the pointer twice, changing the bit it passes
+through. Then it redirects to State BA. After the program moves from State BA to State BB, two cells will exist, as represented
+by the following bits: (one one one one) (one zero zero zero) zero
 State B >> 1    1    0000000 -> State BA
