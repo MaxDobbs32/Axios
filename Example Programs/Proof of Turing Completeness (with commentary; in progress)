@@ -141,8 +141,8 @@ The categories are:
   *  Character whose first encoded bit is zero (little-endian order), but is NOT the newline character
      *  Redirects to the one of the C States, depending on how long it takes for the program to determine it is not the
         newline character
-     *  (It is theoretically possible for a character with encoding U+10000A to redirect to State D, but no such character
-        exists at the time I am writing this.)
+     *  (It is theoretically possible for a character with a particular unicode encoding to redirect to State D, but no such
+        character exists at the time I am writing this.)
 
 State BD >> 30000000001 ~> State CD    30000000000001 ~> State CE    30000000000000001 ~> State CF
 30000000000000000001 ~> State CG    30000000000000000000001 ~> State CH    30000000000000000000000001 ~> State CI
@@ -152,7 +152,8 @@ State BD >> 30000000001 ~> State CD    30000000000001 ~> State CE    30000000000
 30000000000000000000000000000000000000000000001 ~> State CP    30000000000000000000000000000000000000000000000001 ~> State CQ
 30000000000000000000000000000000000000000000000000001 ~> State CR
 30000000000000000000000000000000000000000000000000000001 ~> State CS
-30000000000000000000000000000000000000000000000000000000000001 ~> State D (no currently existing character redirects to State D)   00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+30000000000000000000000000000000000000000000000000000000000001 ~> State D (no currently existing character redirects to State D)
+00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 000000001 -> State G
 
 State BC >> 3000000000000000000000001 ~> State CB    3000000000000000000001 ~> State BD
