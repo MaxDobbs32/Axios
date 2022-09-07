@@ -278,7 +278,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
                         free(front);
                         return;
                     }
-                    for (int i = byte_capacity / 2; i < byte_capacity; i++)
+                    for (size_t i = byte_capacity / 2; i < byte_capacity; i++)
                         cells[i] = 0;
                 }
             }
