@@ -168,7 +168,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
     unsigned char toggle_bit = 0b00000001;
 
     // Initializes the cells array, the array of bits on which Axios operates
-    char* cells = malloc(1);
+    char* cells = malloc(256);
     if (cells == NULL) {
         fprintf(stderr, "Failed to allocate memory\n");
         return;
