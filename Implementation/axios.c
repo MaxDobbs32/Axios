@@ -269,15 +269,16 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
 
                 // Reallocates cells array if it requires more elements beyond its current capacity
                 if (last_bit == capacity) {
+                    size_t byte_capacity = capacity / 4;
                     capacity *= 2;
-                    cells = (char*) realloc(cells, capacity / 8);
+                    cells = (char*) realloc(cells, byte_capacity);
                     if (cells == NULL) {
                         fprintf(stderr, "Failed to allocate memory\n");
                         clear_queue();
                         free(front);
                         return;
                     }
-                    for (int i = capacity / 16; i < capacity / 8; i++)
+                    for (int i = byte_capacity / 2; i < byte_capacity; i++)
                         cells[i] = 0;
                 }
             }
