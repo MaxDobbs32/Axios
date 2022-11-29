@@ -544,7 +544,7 @@ void run_code_from_file() {
     fgets(file_name, 256, stdin);
 
     // Replaces the newline character at the end of file_name with the null character, so the correct file name will be passed to fopen()
-    for (int i = 0; i < 256; i++) {
+    for (int i = 0; i < 255; i++) {
         if (file_name[i] == '\n') {
             file_name[i] = '\0';
             break;
