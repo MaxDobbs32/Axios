@@ -232,7 +232,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
                 if ((cells[current_bit/8] >> current_bit%8) & 1)
                     output_utf_32 ^= toggle_output;
                 if (toggle_output != 0x00100000)
-                    toggle_output *= 2;
+                    toggle_output <<= 1;
                 else {
                     toggle_output = 0x00000001;
                     if (output_utf_32 != 0x1FFFFF) {
@@ -258,7 +258,7 @@ void run_program(unsigned long next_states[], unsigned char will_move_pointer[],
             if (current_bit != last_bit) {
                 current_bit++;
                 if (toggle_bit != 0b10000000)
-                    toggle_bit *= 2;
+                    toggle_bit <<= 1;
                 else
                     toggle_bit = 0b00000001;
             } else {
@@ -537,9 +537,32 @@ void read_program(char code[]) {
 // Input Code
 
 // Opens file, records the code contained inside, and calls read_program()
-void run_code_from_file() {
+int read_code_from_file(char file_name[]) {
+    FILE *file;
+    file = fopen(file_name, "r");
+    if (file == NULL) {
+        fprintf(stderr, "File not found\n");
+        return 1;
+    }
+
+    char code[131072] = {0};
+    size_t code_index = 0;
+
+    while ((code[code_index] = fgetc(file)) != EOF) {
+        if (++code_index == 131072) {
+            fprintf(stderr, "Code is too long, exceeding limits on memory");
+            return 1;
+        }
+    }
+
+    fclose(file);
+    read_program(code);
+    return 0;
+}
+
+// Reads a file name from user input
+void input_file_name(char file_name[]) {
     printf("\nType the name of your file: ");
-    char file_name[256];
     fgets(file_name, 2, stdin); // Buffer function needed, or no user input will be read
     fgets(file_name, 256, stdin);
 
@@ -550,27 +573,44 @@ void run_code_from_file() {
             break;
         }
     }
-    file_name[255] = '\0'; // Ensures the last character is the null character in case the user's input exceeded the length of file_name
+    
+     // Ensures the last character is the null character in case the user's input exceeded the length of file_name
+    file_name[255] = '\0';
+}
 
-    FILE *file;
-    file = fopen(file_name, "r");
-    if (file == NULL) {
-        fprintf(stderr, "File not found\n");
-        return;
-    }
-
-    char code[131072] = {0};
-    size_t code_index = 0;
-
-    while ((code[code_index] = fgetc(file)) != EOF) {
-        if (++code_index == 131072) {
-            fprintf(stderr, "Code is too long, exceeding limits on memory");
-            return;
+// Reads file name from argument(s) at program start
+int get_file_from_argv(char file_name[], int argc, char **argv) {
+    size_t index = 0;
+    
+    // Iteratively adds the characters of all arguments to file_name
+    for (size_t i = 1; i < argc; i++) {
+        char *ch;
+        ch = &(argv[i][0]);
+        
+        // Adds each character in a single argument to file_name
+        while (*ch != '\0') {
+            file_name[index] = *ch;
+            index++; ch++;
+            if (index >= 256) {
+                printf("The name of your file or path is too long");
+                return 1;
+            }
+        }
+        
+        // In the command line, two arguments are separated by a space
+        // I add the space here to treat that space as part of the file name
+        if (i != argc - 1) {
+            file_name[index] = ' ';
+            index++;
+            if (index >= 256) {
+                printf("The name of your file or path is too long");
+                return 1;
+            }
         }
     }
-
-    fclose(file);
-    read_program(code);
+    
+    // Marks the end of the file name
+    file_name[index] = '\0';
 }
 
 // Runs the shell and calls read_program() until "2" is entered
@@ -599,8 +639,8 @@ void run_shell() {
 
 
 
-// Runs menu prompt and calls run_shell() and run_file() functions
-int main() {
+// Runs menu prompt and calls run_shell() and read_code_from_file() functions
+void menu() {
     char selection[4] = {0};
     unsigned char numeral = 'N';
     do {
@@ -620,14 +660,19 @@ int main() {
             numeral = identify_two_byte_operator(selection, 0);
 
         switch (numeral) {
+            // Option to read code from file
             case '0': {
-                run_code_from_file();
+                char file_name[256];
+                input_file_name(file_name);
+                read_code_from_file(file_name);
             } break;
 
+            // Option to run an Axios shell
             case '1': {
                 run_shell();
             } break;
 
+            // Option to see the license
             case '2': {
                 printf("\nMIT License  Copyright (c) 2022  Maxine Dobbs\n");
                 printf("For more information, check out this link: https://github.com/MaxDobbs32/Axios\n");
@@ -636,5 +681,25 @@ int main() {
         }
         selection[1] = 0; selection[2] = 0; selection[3] = 0;
     } while (numeral != '3');
-    return 0;
+    
+    printf("\n");
+}
+
+// Checks for file name arguments and decides which function is called
+int main(int argc, char **argv) {
+    // If there is just one argument, and no file name, the menu function is called
+    if (argc == 1) {
+        menu();
+        return 0;
+    }
+    
+    // If file name argument(s) exist (i.e. more than one argument),
+    // a function to interpret the argument(s) and make the file_name is called
+    char file_name[256];
+    if (get_file_from_argv(file_name, argc, argv) == 1)
+        return 1;
+    
+    // If a valid file name was passed, a function to check for said file
+    // and (if successful) run code found in the file is called
+    return read_code_from_file(file_name);
 }
