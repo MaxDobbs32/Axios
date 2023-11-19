@@ -38,7 +38,7 @@ interested. In addition, I should clarify several things before explaining the p
         negating the referenced state and instead moving to the next state noted in code. In these cases, a curly arrow ( ~> )
         is used.
      *  There is at least one state that is not actually accessible, and it is surrounded by a pair of the symbol !>. Note that
-        State KA is can be called by other states, but not this unreachable state. (For the sake of the proof, it is easier to
+        State KA can be called by other states, but not this unreachable state. (For the sake of the proof, it is easier to
         leave this state in than prove it can't be reached)
 
   *  Everything that does not contain numerals is a comment. This may lead to spelling out numbers awkwardly (namely, spelling
