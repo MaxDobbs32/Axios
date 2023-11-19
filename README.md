@@ -10,7 +10,7 @@ Axios was created with these goals in mind:
 
 The implementation as found in axios.c can read program files and run a shell. For writing program files, text files are likely the easiest to work with, since they only contain character encodings. (This implementation assumes your computer saves files in UTF-8.)
 
-All this can be done in the menu, which you will see if you don't run the program with any arguments (e.g. just running ./axios.o).
+All this can be done in the menu, which will pop up if you don't run the program with any arguments (e.g. just running ./axios.o).
 Alternatively, you can pass a file name as an argument on programs start, such as in the example below:
 
     ./axios.o Example Programs/hello world.txt
