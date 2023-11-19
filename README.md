@@ -10,6 +10,11 @@ Axios was created with these goals in mind:
 
 The implementation as found in axios.c can read program files and run a shell. For writing program files, text files are likely the easiest to work with, since they only contain character encodings. (This implementation assumes your computer saves files in UTF-8.)
 
+All this can be done in the menu, which you will see if you don't run the program with any arguments (e.g. just running ./axios.o).
+Alternatively, you can pass a file name as an argument on programs start, such as in the example below:
+
+    ./axios.o Example Programs/hello world.txt
+
 The language is explained in much greater detail in the "Guide to Axios.pdf" document. Below is a fairly brief summary of how Axios works.
 
 Axios operates on a list of cells that grows over time. Each cell has two possible values, zero or one (not to be confused with the 0 and 1 operators). In this implimentation, cells are stored as bits, but other data types like booleans can also serve this purpose. There is also a pointer located along the list.
