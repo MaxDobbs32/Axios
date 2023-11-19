@@ -37,6 +37,9 @@ interested. In addition, I should clarify several things before explaining the p
      *  For some states that reference a named state, it is possible for the bit under the pointer to be read as zero, thus
         negating the referenced state and instead moving to the next state noted in code. In these cases, a curly arrow ( ~> )
         is used.
+     *  There is at least one state that is not actually accessible, and it is surrounded by two symbols !>. Note that state KA is
+can be called by other states, but not this unreachable state.
+        (For the sake of the proof, it is easier to leave this state in than prove it can't be reached)
 
   *  Everything that does not contain numerals is a comment. This may lead to spelling out numbers awkwardly (namely, spelling
      out Rule One Hundred Ten), but this is necessary to ensure the interpreter does not read comments as code.
@@ -87,7 +90,7 @@ State TE >> 1    000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 0000000000000000000000000000000000000000000000000000000000001 ~> State U    0000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-0000000000000000000000000000000000000000000000000000000001 -> State KA
+!> 0000000000000000000000000000000000000000000000000000000001 !> State KA
 
 This line of code travels across the cells, looking for the cell whose second bit is one (the current cell). When that cell is
 found, the program moves the pointer to the third bit and redirects to State TE.
