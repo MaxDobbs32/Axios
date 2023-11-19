@@ -37,9 +37,6 @@ interested. In addition, I should clarify several things before explaining the p
      *  For some states that reference a named state, it is possible for the bit under the pointer to be read as zero, thus
         negating the referenced state and instead moving to the next state noted in code. In these cases, a curly arrow ( ~> )
         is used.
-     *  There is at least one state that is not actually accessible, and it is surrounded by a pair of the symbol !>. Note that
-        State KA can be called by other states, but not this unreachable state. (For the sake of the proof of Turing completeness,
-        it is easier to leave this state in the code than prove it can't be reached.)
 
   *  Everything that does not contain numerals is a comment. This may lead to spelling out numbers awkwardly (namely, spelling
      out Rule One Hundred Ten), but this is necessary to ensure the interpreter does not read comments as code.
@@ -81,17 +78,16 @@ Once the T states are reached, there is enough information to know the current c
 and the program updates accordingly.
 
 This line changes the value of the third bit to zero and moves the pointer over the fourth bit without changing it (technically
-changing it twice, which has the same effect). At this point, the bit under the pointer belongs to the next cell. The bit will be
-zero (indicating the absence of a valid cell), so the program goes to State U. (I left the option to go State KA despite the
-fact that the bit must be zero. Proving it would just make this code denser than it already is.)
+changing it twice, which has the same effect). At this point, the bit under the pointer belongs to the next cell. If the bit was
+zero (indicating the absence of a valid cell) the program goes to State U. Otherwise, it goes to State KA.
 State TE >> 1    000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000001    1    000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-0000000000000000000000000000000000000000000000000000000000001 -> State U    0000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000001 ~> State U    0000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-!> 0000000000000000000000000000000000000000000000000000000001 !> State KA
+0000000000000000000000000000000000000000000000000000000001 -> State KA
 
 This line of code travels across the cells, looking for the cell whose second bit is one (the current cell). When that cell is
 found, the program moves the pointer to the third bit and redirects to State TE.
