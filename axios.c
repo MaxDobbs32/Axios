@@ -45,9 +45,12 @@ Parse Code
 
 Input Code
   *  run_code_from_file()
+  *  input_file_name()
+  *  get_file_from_argv()
   *  run_shell()
 
-main(): runs menu
+menu(): runs menu
+main(): interprets arguments passed at command line
 */
 
 
